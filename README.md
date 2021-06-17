@@ -20,3 +20,8 @@ This project was made possible thanks to the following projects.
 ## License
 
 MIT © [Sung M. Kim](https://sung.codes)
+
+# Important
+
+- I used Circular fonr because Nunito sans font want free
+- The fixer api only converts to eur as base currency for the free mode
