@@ -3,7 +3,17 @@ module.exports = {
   // https://tailwindcss.com/docs/just-in-time-mode
   mode: 'jit',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['"Nunito Sans"', 'Helvetica', 'Arial', 'sans-serif'],
+      },
+      colors: {
+        // Configure your color palette here
+        'current-green': '#6FAE75',
+        'current-blue': '#4305EB',
+        'current-bg': '#FBFBFB',
+      },
+    },
   },
   variants: {},
   plugins: [],

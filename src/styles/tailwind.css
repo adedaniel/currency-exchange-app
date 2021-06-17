@@ -1,7 +1,6 @@
 @tailwind base;
 
 /* Your own custom base styles */
-
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */
@@ -13,3 +12,6 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+}
