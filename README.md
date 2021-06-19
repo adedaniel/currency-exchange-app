@@ -23,5 +23,6 @@ MIT © [Sung M. Kim](https://sung.codes)
 
 # Important
 
-- I used Circular fonr because Nunito sans font want free
+- I used Nunito sans fonr because Sailec font wasnt free
 - The fixer api only converts to eur as base currency for the free mode
+- I assumed that the transfer fees was a fixed amount of 3.69 regardless of the currency
