@@ -16,7 +16,7 @@ export default function NavigationBar() {
   };
 
   return (
-    <div className="fixed top-0 flex justify-center py-6 px-4 bg-white w-full">
+    <div className="fixed z-50 top-0 flex justify-center py-6 px-4 bg-white w-full">
       <div className="flex justify-between items-center w-full md:w-[49rem]">
         <img src="./logo.png" alt="Logo" />
 

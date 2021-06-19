@@ -8,7 +8,7 @@ export const initialPaymentDetails: PaymentDetailsProps = {
   receiverCurrency: "EUR",
   insideEurope: true,
   fee: "3.69",
-  rate: "",
+  rate: "1.14989",
   receiverName: "",
   receiverEmail: "",
   iban: "",

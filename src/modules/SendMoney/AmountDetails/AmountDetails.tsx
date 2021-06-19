@@ -7,7 +7,13 @@ import { PaymentStages } from "utils/types";
 
 export default function AmountDetails() {
   const {
-    paymentDetails: { senderAmount, senderCurrency },
+    paymentDetails: {
+      senderAmount,
+      senderCurrency,
+      receiverCurrency,
+      rate,
+      fee,
+    },
     handleChange,
     setPaymentStage,
   } = usePaymentContext();
@@ -18,13 +24,29 @@ export default function AmountDetails() {
   };
 
   const onChangeAmount = (event: ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.value || event.target.value.match("[0-9]+")) {
+    if (
+      !event.target.value ||
+      event.target.value.replace(/\,/g, "").match(/^-?\d*\.?\d*$/)
+    ) {
       handleChange({
         target: {
           name: event.target.name,
           value: event.target.value.replace(/\,/g, ""),
         },
       });
+    }
+  };
+
+  const getReceiverAmount = () => {
+    if (senderAmount && fee && rate) {
+      const receiverAmount =
+        (Number(senderAmount) - Number(fee)) * Number(rate);
+
+      return receiverAmount > 0
+        ? receiverAmount.toLocaleString("en-US").toString()
+        : "0";
+    } else {
+      return "";
     }
   };
 
@@ -64,22 +86,27 @@ export default function AmountDetails() {
         </div>
         <div className="ml-3 text-gray-500 text-sm">
           <div className="flex mb-3">
-            <p className="font-medium w-24">3.69 {senderCurrency}</p>
+            <p className="font-medium w-24">
+              {fee} {senderCurrency}
+            </p>
             <p className="font-medium">Transfer fee</p>
           </div>
           <div className="flex mb-3">
-            <p className="font-medium w-24">996.31 EUR</p>
+            <p className="font-medium w-24">996.31 {receiverCurrency}</p>
             <p className="font-medium">Amount we’ll convert</p>
           </div>
           <div className="flex font-semibold text-purple-900">
-            <p className="w-24">1.14989</p>
+            <p className="w-24">{rate}</p>
             <p>Guaranteed rate (1hr)</p>
           </div>
         </div>
       </div>
       <div className={`mt-${senderAmount ? "0" : "4"}`}>
         <InputSelect
-          inputProps={{ value: senderAmount, label: "Recipient gets" }}
+          inputProps={{
+            value: getReceiverAmount(),
+            label: "Recipient gets",
+          }}
         />
       </div>
       <div className="flex flex-col md:flex-row mt-6">
