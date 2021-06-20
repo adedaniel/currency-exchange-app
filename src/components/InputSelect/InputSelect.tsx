@@ -1,20 +1,25 @@
 import React, { FC } from "react";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   label?: string;
 }
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {}
 
-interface InputSelectProps {
-  inputProps: InputProps;
-  selectProps?: SelectProps;
+interface ISelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  options: Array<string>;
 }
 
-const InputSelect: FC<InputSelectProps> = (props) => {
-  const { inputProps, selectProps } = props;
+interface IInputSelectProps {
+  inputProps: IInputProps;
+  selectProps: ISelectProps;
+  country?: string;
+}
+
+const InputSelect: FC<IInputSelectProps> = (props) => {
+  const { inputProps, selectProps, country } = props;
 
   const { label, ...inputRest } = inputProps;
+  const { options, ...selectRest } = selectProps;
 
   return (
     <div className="flex">
@@ -27,15 +32,19 @@ const InputSelect: FC<InputSelectProps> = (props) => {
       </div>
       <div className="flex h-16 w-32 bg-gray-100 rounded-r-md items-center justify-center px-6">
         <img
-          src="https://restcountries.eu/data/nga.svg"
-          alt="flag"
+          src={`https://flagcdn.com/32x24/${country}.png`}
+          alt={`${country} flag`}
           className="w-5 h-5 rounded-full object-cover md:mr-2"
         />
         <select
           className="bg-gray-100 text-purple-900 text-sm w-16 font-bold"
-          {...selectProps}
+          {...selectRest}
         >
-          <option value="USD">USD</option>
+          {options.map((option: any) => (
+            <option value={option} key={option}>
+              {option}
+            </option>
+          ))}
         </select>
       </div>
     </div>

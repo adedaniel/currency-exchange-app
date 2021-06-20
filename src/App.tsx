@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 import SendMoney from "modules/SendMoney/SendMoney";
-import { PaymentDetailsProps, PaymentStages } from "utils/types";
+import { IPaymentDetailsProps, PaymentStages } from "utils/types";
 import { initialPaymentDetails } from "utils/constants";
 import { PaymentProvider } from "utils/context";
 
 function App() {
-  const [paymentDetails, setPaymentDetails] = useState<PaymentDetailsProps>(
+  const [paymentDetails, setPaymentDetails] = useState<IPaymentDetailsProps>(
     initialPaymentDetails
   );
 
