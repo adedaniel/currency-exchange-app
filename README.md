@@ -1,28 +1,24 @@
-# cra-template-tailwindcss-typescript
+# Fliqpay Frontend Engineer Assessment Project
 
-A streamlined [Tailwind CSS](https://tailwindcss.com) template for [Create React App](https://github.com/facebook/create-react-app) in [TypeScript](https://www.typescriptlang.org/).
+### by Adetola Daniel
 
-> This template installs and sets up [Tailwind CSS](https://tailwindcss.com) with TypeScript support.
+This project uses React, Tpyescript and Tailwind CSS with Yarn as package manager
 
-## Usage
+## Installation
+
+To install dependencies and run the development server, run:
 
 ```bash
-npx create-react-app --template tailwindcss-typescript
+yarn
+# then
+yarn start
 ```
 
-## Credits
+- You can also view the deployed site at [fliqpay-exchange.netlify.app](https://fliqpay-exchange.netlify.app)
 
-This project was made possible thanks to the following projects.
-
-1. [GeoffSelby/cra-template-tailwindcss](https://github.com/GeoffSelby/cra-template-tailwindcss) - A streamlined Tailwind CSS template for Create React App (in JavaScript).
-2. [cra-template-typescript](https://github.com/facebook/create-react-app/tree/master/packages/cra-template-typescript) - An official TypeScript template for create-react-app.
-
-## License
-
-MIT © [Sung M. Kim](https://sung.codes)
-
-# Important
+### Important
 
 - I used Nunito sans fonr because Sailec font wasnt free
 - The fixer api only converts to eur as base currency for the free mode
 - I assumed that the transfer fees was a fixed amount of 3.69 regardless of the currency
+- i had to use a cors provider since fixer only gives provides an http api for the free plan rather than the https api

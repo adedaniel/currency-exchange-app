@@ -4,6 +4,7 @@ import { IPaymentContextProps, PaymentStages } from "./types";
 
 const PaymentContext = createContext<IPaymentContextProps>({
   paymentDetails: initialPaymentDetails,
+  setPaymentDetails: () => {},
   handleChange: () => {},
   setPaymentStage: () => {},
   paymentStage: PaymentStages.AMOUNT,

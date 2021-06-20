@@ -3,8 +3,8 @@ import React from "react";
 import InputSelect from "components/InputSelect/InputSelect";
 import Button from "components/Button/Button";
 
-import useAmountDetailsHook from "./useAmountDetailsHook";
 import ShowTransferInfo from "./components/ShowTransferInfo";
+import useAmountDetailsHook from "./useAmountDetailsHook";
 
 export default function AmountDetails() {
   const {
@@ -29,6 +29,7 @@ export default function AmountDetails() {
           name: "senderAmount",
           onChange: onChangeAmount,
           label: "You send",
+          required: true,
         }}
         selectProps={{
           onChange: handleChange,
@@ -42,8 +43,11 @@ export default function AmountDetails() {
       <div className={`mt-${senderAmount ? "0" : "4"}`}>
         <InputSelect
           inputProps={{
-            value: receiverAmount,
+            name: "receiverAmount",
+            value: receiverAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
             label: "Recipient gets",
+            onChange: onChangeAmount,
+            required: true,
           }}
           selectProps={{
             options: [receiverCurrency],

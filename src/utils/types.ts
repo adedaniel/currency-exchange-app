@@ -2,6 +2,7 @@ import { SetStateAction } from "react";
 
 export interface IPaymentDetailsProps {
   senderAmount: string;
+  receiverAmount: string;
   senderCurrency: string;
   receiverCurrency: string;
   insideEurope: boolean;
@@ -22,6 +23,7 @@ export enum PaymentStages {
 
 export interface IPaymentContextProps {
   paymentDetails: IPaymentDetailsProps;
+  setPaymentDetails: (value: SetStateAction<IPaymentDetailsProps>) => void;
   paymentStage: PaymentStages;
   setPaymentStage: (value: SetStateAction<PaymentStages>) => void;
   handleChange: (event: any) => void;

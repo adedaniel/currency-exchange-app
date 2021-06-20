@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Divider from "./Divider";
+import ErrorPage from "./ErrorPage";
 
-describe("Divider", () => {
+describe("ErrorPage", () => {
   it("renders without crashing", () => {
-    const wrapper = render(<Divider />);
+    const wrapper = render(<ErrorPage />);
 
     expect(wrapper).toBeTruthy();
   });

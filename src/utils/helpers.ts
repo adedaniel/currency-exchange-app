@@ -20,17 +20,33 @@ export const getConversionAmount = (senderAmount: string, fee: number) => {
     : 0;
 };
 
-export const getReceiverAmount = (
+export const getUpdatedReceiverAmount = (
   senderAmount: string,
   fee: number,
   rate: number
 ) => {
   if (senderAmount && fee && rate) {
-    const receiverAmount = (Number(senderAmount) - Number(fee)) / Number(rate);
+    const receiverAmount = (Number(senderAmount) - Number(fee)) * Number(rate);
 
     return receiverAmount > 0
       ? receiverAmount.toLocaleString("en-US", { maximumFractionDigits: 2 })
-      : 0;
+      : "0";
+  } else {
+    return "";
+  }
+};
+
+export const getUpdatedSenderAmount = (
+  receiverAmount: string,
+  fee: number,
+  rate: number
+) => {
+  if (receiverAmount && fee && rate) {
+    const senderAmount = (Number(receiverAmount) + Number(fee)) / Number(rate);
+
+    return senderAmount > 0
+      ? senderAmount.toLocaleString("en-US", { maximumFractionDigits: 2 })
+      : "0";
   } else {
     return "";
   }

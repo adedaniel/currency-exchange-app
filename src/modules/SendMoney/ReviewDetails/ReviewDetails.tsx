@@ -2,16 +2,13 @@ import React from "react";
 import Button from "components/Button/Button";
 import Divider from "components/Divider/Divider";
 import { usePaymentContext } from "utils/context";
-import {
-  getConversionAmount,
-  getReceiverAmount,
-  separateWithComma,
-} from "utils/helpers";
+import { getConversionAmount, separateWithComma } from "utils/helpers";
 
 export default function ReviewDetails() {
   const {
     paymentDetails: {
       senderAmount,
+      receiverAmount,
       senderCurrency,
       receiverCurrency,
       insideEurope,
@@ -24,7 +21,6 @@ export default function ReviewDetails() {
     },
   } = usePaymentContext();
 
-  const receiverAmount = getReceiverAmount(senderAmount, fee, rate);
   const conversionAmount = getConversionAmount(senderAmount, fee);
 
   return (

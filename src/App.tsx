@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Redirect, Route, Switch, BrowserRouter } from "react-router-dom";
+import React, { ChangeEvent, useState } from "react";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 
-import ErrorPage from "components/ErrorPage/ErrorPage";
+import NotFoundPage from "components/NotFoundPage/NotFoundPage";
 import SendMoneyPage from "modules/SendMoney/SendMoney";
 import { IPaymentDetailsProps, PaymentStages } from "utils/types";
 import { initialPaymentDetails } from "utils/constants";
@@ -16,7 +16,7 @@ function App() {
     PaymentStages.AMOUNT
   );
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setPaymentDetails({ ...paymentDetails, [name]: value });
   };
@@ -33,13 +33,13 @@ function App() {
         paymentDetails,
         handleChange,
         resetPaymentDetails,
+        setPaymentDetails,
       }}
     >
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={SendMoneyPage} />
-          <Route path="/500" component={ErrorPage} />
-          <Redirect to="/404" />
+          <Route path="*" component={NotFoundPage} />
         </Switch>
       </BrowserRouter>
     </PaymentProvider>

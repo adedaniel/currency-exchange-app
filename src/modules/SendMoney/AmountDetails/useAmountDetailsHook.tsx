@@ -4,37 +4,44 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Axios from "axios";
 import { usePaymentContext } from "utils/context";
 import { PaymentStages } from "utils/types";
-import { getReceiverAmount, getConversionAmount } from "utils/helpers";
+import staticRates from "utils/rates.json";
+import {
+  getUpdatedReceiverAmount,
+  getConversionAmount,
+  getUpdatedSenderAmount,
+} from "utils/helpers";
 import { BASE_API_URL } from "utils/constants";
-
 interface IAllRateProps {
-  [currency: string]: { rate: number };
+  [currency: string]: number;
 }
 
 const useAmountDetailsHook = () => {
+  const { paymentDetails, setPaymentDetails, handleChange, setPaymentStage } =
+    usePaymentContext();
+
   const {
-    paymentDetails: {
-      senderAmount,
-      senderCurrency,
-      receiverCurrency,
-      rate,
-      fee,
-    },
-    handleChange,
-    setPaymentStage,
-  } = usePaymentContext();
+    senderAmount,
+    receiverAmount,
+    senderCurrency,
+    receiverCurrency,
+    rate,
+    fee,
+  } = paymentDetails;
 
   const [allRates, setAllRates] = useState<IAllRateProps>({});
 
   const fetchRates = () => {
     Axios.get(`${BASE_API_URL}?access_key=8d15f3f6f2e87ee9db02b556c48b0fb4`)
       .then(({ data }) => {
-        // if (data.rates) {
-        setAllRates(data.rates);
-        // }
+        if (data.rates) {
+          setAllRates(data.rates);
+        } else {
+          setAllRates(staticRates);
+        }
       })
       .catch(({ response }) => {
         console.log(response);
+        setAllRates(staticRates);
       });
   };
 
@@ -43,11 +50,9 @@ const useAmountDetailsHook = () => {
   }, []);
 
   useEffect(() => {
-    handleChange({
-      target: {
-        name: "rate",
-        value: allRates[senderCurrency],
-      },
+    setPaymentDetails({
+      ...paymentDetails,
+      rate: allRates[senderCurrency],
     });
   }, [senderCurrency, allRates]);
 
@@ -57,20 +62,32 @@ const useAmountDetailsHook = () => {
   };
 
   const onChangeAmount = (event: ChangeEvent<HTMLInputElement>) => {
-    if (
-      !event.target.value ||
-      event.target.value.replace(/\,/g, "").match(/^-?\d*\.?\d*$/)
-    ) {
-      handleChange({
-        target: {
-          name: event.target.name,
-          value: event.target.value.replace(/\,/g, ""),
-        },
+    const { name, value: valueWithStrings } = event.target;
+
+    const value = valueWithStrings.replace(/\,/g, "");
+
+    if (!value || value.match(/^-?\d*\.?\d*$/)) {
+      const updatedAmounts = () => {
+        if (name === "senderAmount") {
+          return {
+            senderAmount: value,
+            receiverAmount: getUpdatedReceiverAmount(value, fee, rate),
+          };
+        } else if (name === "receiverAmount") {
+          return {
+            receiverAmount: value,
+            senderAmount: getUpdatedSenderAmount(value, fee, rate),
+          };
+        }
+      };
+
+      setPaymentDetails({
+        ...paymentDetails,
+        ...updatedAmounts(),
       });
     }
   };
 
-  const receiverAmount = getReceiverAmount(senderAmount, fee, rate);
   const conversionAmount = getConversionAmount(senderAmount, fee);
 
   return {
@@ -79,8 +96,8 @@ const useAmountDetailsHook = () => {
     fee,
     receiverCurrency,
     allRates,
-    handleChange,
     onChangeAmount,
+    handleChange,
     handleSubmitAmountDetails,
     senderAmount,
     receiverAmount,

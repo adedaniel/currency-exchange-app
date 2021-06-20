@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Divider from "./Divider";
+import NotFoundPage from "./NotFoundPage";
 
-describe("Divider", () => {
+describe("NotFoundPage", () => {
   it("renders without crashing", () => {
-    const wrapper = render(<Divider />);
+    const wrapper = render(<NotFoundPage />);
 
     expect(wrapper).toBeTruthy();
   });
