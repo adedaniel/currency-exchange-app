@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<button
+  className="w-full h-12 border-[1px] rounded-md undefined"
+  data-testid="button"
+>
+  test
+</button>
+`;

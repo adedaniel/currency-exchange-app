@@ -10,6 +10,7 @@ const Button: FC<IButtonProps> = (props) => {
   return (
     <button
       className={`w-full h-12 border-[1px] rounded-md ${className}`}
+      data-testid="button"
       {...rest}
     />
   );
