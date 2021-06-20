@@ -1,15 +1,8 @@
-import { createContext, SetStateAction, useContext } from "react";
+import { createContext, useContext } from "react";
 import { initialPaymentDetails } from "./constants";
-import { PaymentDetailsProps, PaymentStages } from "./types";
+import { IPaymentContextProps, PaymentStages } from "./types";
 
-interface PaymentContextProps {
-  paymentDetails: PaymentDetailsProps;
-  paymentStage: PaymentStages;
-  setPaymentStage: (value: SetStateAction<PaymentStages>) => void;
-  handleChange: (event: any) => void;
-}
-
-const PaymentContext = createContext<PaymentContextProps>({
+const PaymentContext = createContext<IPaymentContextProps>({
   paymentDetails: initialPaymentDetails,
   handleChange: () => {},
   setPaymentStage: () => {},

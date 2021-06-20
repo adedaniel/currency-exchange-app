@@ -1,13 +1,13 @@
-import React from 'react'
-import { FC } from 'react'
+import React from "react";
+import { FC } from "react";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  className?: string
-  label?: string
+interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+  label?: string;
 }
 
-const Input: FC<InputProps> = (props) => {
-  const { className, label, ...rest } = props
+const Input: FC<IInputProps> = (props) => {
+  const { className, label, ...rest } = props;
   return (
     <div>
       <p className="text-gray-400 mb-1 text-sm">{label}</p>
@@ -16,7 +16,7 @@ const Input: FC<InputProps> = (props) => {
         {...rest}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

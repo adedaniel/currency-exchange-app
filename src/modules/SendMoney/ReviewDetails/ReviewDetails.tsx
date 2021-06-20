@@ -2,7 +2,11 @@ import React from "react";
 import Button from "components/Button/Button";
 import Divider from "components/Divider/Divider";
 import { usePaymentContext } from "utils/context";
-import { separateWithComma } from "utils/helpers";
+import {
+  getConversionAmount,
+  getReceiverAmount,
+  separateWithComma,
+} from "utils/helpers";
 
 export default function ReviewDetails() {
   const {
@@ -19,6 +23,9 @@ export default function ReviewDetails() {
       swiftCode,
     },
   } = usePaymentContext();
+
+  const receiverAmount = getReceiverAmount(senderAmount, fee, rate);
+  const conversionAmount = getConversionAmount(senderAmount, fee);
 
   return (
     <div className="">
@@ -42,7 +49,9 @@ export default function ReviewDetails() {
         </div>
         <div className="flex my-3 justify-between items-center">
           <p className="text-gray-400 text-sm">Amount we’ll convert</p>
-          <p className="text-sm">996.31 {senderCurrency}</p>
+          <p className="text-sm">
+            {conversionAmount} {senderCurrency}
+          </p>
         </div>
         <div className="flex my-3 justify-between items-center">
           <p className="text-gray-400 text-sm">Guaranteed rate</p>
@@ -53,7 +62,7 @@ export default function ReviewDetails() {
             {receiverName.split(" ")[0]} gets
           </p>
           <p className="text-base font-bold">
-            {separateWithComma(1248.63)} {receiverCurrency}
+            {receiverAmount} {receiverCurrency}
           </p>
         </div>
       </div>

@@ -11,6 +11,7 @@
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "autoprefixer": "^10.2.6",
+    "axios": "^0.21.1",
     "check-types": "^11.1.2",
     "cross-env": "7.x",
     "delay-cli": "^1.1.0",

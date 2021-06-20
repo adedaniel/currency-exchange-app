@@ -2,7 +2,7 @@ import React, { FormEvent } from "react";
 import Input from "components/Input/Input";
 import Button from "components/Button/Button";
 import Divider from "components/Divider/Divider";
-import ToggleInsideEurope from "./ToggleInsideEurope";
+import ToggleInsideEurope from "./components/ToggleInsideEurope";
 import { PaymentStages } from "utils/types";
 import { usePaymentContext } from "utils/context";
 
