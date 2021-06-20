@@ -25,4 +25,5 @@ export interface IPaymentContextProps {
   paymentStage: PaymentStages;
   setPaymentStage: (value: SetStateAction<PaymentStages>) => void;
   handleChange: (event: any) => void;
+  resetPaymentDetails: () => void;
 }

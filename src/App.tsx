@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Redirect, Route, Switch, BrowserRouter } from "react-router-dom";
 
-import SendMoney from "modules/SendMoney/SendMoney";
+import ErrorPage from "components/ErrorPage/ErrorPage";
+import SendMoneyPage from "modules/SendMoney/SendMoney";
 import { IPaymentDetailsProps, PaymentStages } from "utils/types";
 import { initialPaymentDetails } from "utils/constants";
 import { PaymentProvider } from "utils/context";
@@ -19,11 +21,27 @@ function App() {
     setPaymentDetails({ ...paymentDetails, [name]: value });
   };
 
+  const resetPaymentDetails = () => {
+    setPaymentDetails(initialPaymentDetails);
+  };
+
   return (
     <PaymentProvider
-      value={{ paymentStage, setPaymentStage, paymentDetails, handleChange }}
+      value={{
+        paymentStage,
+        setPaymentStage,
+        paymentDetails,
+        handleChange,
+        resetPaymentDetails,
+      }}
     >
-      <SendMoney />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={SendMoneyPage} />
+          <Route path="/500" component={ErrorPage} />
+          <Redirect to="/404" />
+        </Switch>
+      </BrowserRouter>
     </PaymentProvider>
   );
 }

@@ -1,10 +1,14 @@
 import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
 import NavigationBar from "components/NavigationBar/NavigationBar";
+import { PaymentStages } from "utils/types";
+import { usePaymentContext } from "utils/context";
+
 import AmountDetails from "./AmountDetails/AmountDetails";
 import RecipientDetails from "./RecipientDetails/RecipientDetails";
 import ReviewDetails from "./ReviewDetails/ReviewDetails";
-import { PaymentStages } from "utils/types";
-import { usePaymentContext } from "utils/context";
+import ErrorPage from "components/ErrorPage/ErrorPage";
 
 function SendMoney() {
   const { paymentStage } = usePaymentContext();
@@ -23,4 +27,10 @@ function SendMoney() {
   );
 }
 
-export default SendMoney;
+export default function SendMoneyPage() {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorPage}>
+      <SendMoney />
+    </ErrorBoundary>
+  );
+}

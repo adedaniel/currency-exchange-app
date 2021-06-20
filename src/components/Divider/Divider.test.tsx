@@ -1,11 +1,12 @@
-import React from 'react'
-import { render } from '@testing-library/react'
-import Input from './Divider'
+import React from "react";
+import { render } from "@testing-library/react";
 
-describe('Input', () => {
-  it('renders without crashing', () => {
-    const wrapper = render(<Input />)
+import Input from "./Divider";
 
-    expect(wrapper).toBeTruthy()
-  })
-})
+describe("Input", () => {
+  it("renders without crashing", () => {
+    const wrapper = render(<Input />);
+
+    expect(wrapper).toBeTruthy();
+  });
+});

@@ -1,5 +1,4 @@
-import React from "react";
-import { FC } from "react";
+import React, { FC } from "react";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;

@@ -1,10 +1,10 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import Axios from "axios";
 import { usePaymentContext } from "utils/context";
 import { PaymentStages } from "utils/types";
-import Axios from "axios";
-import { getReceiverAmount, getConversionAmount } from "../../../utils/helpers";
+import { getReceiverAmount, getConversionAmount } from "utils/helpers";
 import { BASE_API_URL } from "utils/constants";
 
 interface IAllRateProps {
@@ -29,7 +29,9 @@ const useAmountDetailsHook = () => {
   const fetchRates = () => {
     Axios.get(`${BASE_API_URL}?access_key=8d15f3f6f2e87ee9db02b556c48b0fb4`)
       .then(({ data }) => {
+        // if (data.rates) {
         setAllRates(data.rates);
+        // }
       })
       .catch(({ response }) => {
         console.log(response);

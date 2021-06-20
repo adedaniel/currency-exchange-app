@@ -5,14 +5,21 @@ import { VscClose } from "react-icons/vsc";
 import { allPaymentStages } from "utils/constants";
 import { getNavColor } from "utils/helpers";
 import { usePaymentContext } from "utils/context";
+import { PaymentStages } from "utils/types";
 
 export default function NavigationBar() {
-  const { paymentStage, setPaymentStage } = usePaymentContext();
+  const { paymentStage, setPaymentStage, resetPaymentDetails } =
+    usePaymentContext();
 
   const navigateStage = (index: number) => {
     if (paymentStage > index) {
       setPaymentStage(index);
     }
+  };
+
+  const resetAll = () => {
+    resetPaymentDetails();
+    setPaymentStage(PaymentStages.AMOUNT);
   };
 
   return (
@@ -47,7 +54,7 @@ export default function NavigationBar() {
           {allPaymentStages[paymentStage]}
         </p>
 
-        <button className="p-1 text-2xl text-gray-400">
+        <button onClick={resetAll} className="p-1 text-2xl text-gray-400">
           <VscClose />
         </button>
       </div>
