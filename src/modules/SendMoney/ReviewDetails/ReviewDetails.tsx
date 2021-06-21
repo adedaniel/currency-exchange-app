@@ -4,18 +4,19 @@ import Divider from "components/Divider/Divider";
 import { usePaymentContext } from "utils/context";
 import { getConversionAmount, separateWithComma } from "utils/helpers";
 
+// Final component to review all details that have been  inputed and calculated
 export default function ReviewDetails() {
   const {
     paymentDetails: {
       senderAmount,
-      receiverAmount,
+      recipientAmount,
       senderCurrency,
-      receiverCurrency,
+      recipientCurrency,
       insideEurope,
       fee,
       rate,
-      receiverName,
-      receiverEmail,
+      recipientName,
+      recipientEmail,
       iban,
       swiftCode,
     },
@@ -55,10 +56,11 @@ export default function ReviewDetails() {
         </div>
         <div className="flex my-3 justify-between items-center">
           <p className="text-gray-400 text-sm">
-            {receiverName.split(" ")[0]} gets
+            {/* Extract First name */}
+            {recipientName.split(" ")[0]} gets
           </p>
           <p className="text-base font-bold">
-            {receiverAmount} {receiverCurrency}
+            {recipientAmount} {recipientCurrency}
           </p>
         </div>
       </div>
@@ -67,12 +69,12 @@ export default function ReviewDetails() {
       <div className="mt-4">
         <div className="flex my-3 justify-between items-center">
           <p className="text-gray-400 text-sm">Name</p>
-          <p className="text-sm capitalize">{receiverName}</p>
+          <p className="text-sm capitalize">{recipientName}</p>
         </div>
-        {receiverEmail && (
+        {recipientEmail && (
           <div className="flex my-3 justify-between items-center">
             <p className="text-gray-400 text-sm">Email address</p>
-            <p className="text-sm">{receiverEmail}</p>
+            <p className="text-sm">{recipientEmail}</p>
           </div>
         )}
         {insideEurope && (

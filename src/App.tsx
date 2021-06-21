@@ -7,23 +7,21 @@ import { IPaymentDetailsProps, PaymentStages } from "utils/types";
 import { initialPaymentDetails } from "utils/constants";
 import { PaymentProvider } from "utils/context";
 
+// Hello! This is the root App.js, where the app's logic is stored and shared (using React's Context API)
+
 function App() {
   const [paymentDetails, setPaymentDetails] = useState<IPaymentDetailsProps>(
     initialPaymentDetails
-  );
+  ); // Here, we initialize the transfer payment details
 
   const [paymentStage, setPaymentStage] = useState<PaymentStages>(
     PaymentStages.AMOUNT
-  );
+  ); // And the payment stage is initialized too
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setPaymentDetails({ ...paymentDetails, [name]: value });
-  };
-
-  const resetPaymentDetails = () => {
-    setPaymentDetails(initialPaymentDetails);
-  };
+  }; // This is the onChange handler for input fields
 
   return (
     <PaymentProvider
@@ -32,7 +30,6 @@ function App() {
         setPaymentStage,
         paymentDetails,
         handleChange,
-        resetPaymentDetails,
         setPaymentDetails,
       }}
     >

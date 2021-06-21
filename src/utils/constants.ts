@@ -4,18 +4,16 @@ export const allPaymentStages = ["Amount", "Recipient", "Review", "Pay"];
 
 export const BASE_API_URL = "http://data.fixer.io/api/latest";
 
-export const CORS_ANYWHERE = "https://cors-anywhere.herokuapp.com";
-
 export const initialPaymentDetails: IPaymentDetailsProps = {
   senderAmount: "",
-  receiverAmount: "",
+  recipientAmount: "",
   senderCurrency: "USD",
-  receiverCurrency: "EUR",
+  recipientCurrency: "EUR",
   insideEurope: true,
-  fee: 3.69,
+  fee: 3.69, // I assumed a static fee of 3.69 of whatever the sender currency is
   rate: 0,
-  receiverName: "",
-  receiverEmail: "",
+  recipientName: "",
+  recipientEmail: "",
   iban: "",
   swiftCode: "",
 };

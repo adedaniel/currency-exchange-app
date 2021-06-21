@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 interface IDividerProps {
-  className?: string;
+  className?: string; // to allow addition of other style classes
 }
 
 const Divider: FC<IDividerProps> = (props) => {

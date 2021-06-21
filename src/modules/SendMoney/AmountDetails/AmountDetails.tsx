@@ -1,20 +1,21 @@
-/* eslint-disable no-useless-escape */
 import React from "react";
 import InputSelect from "components/InputSelect/InputSelect";
 import Button from "components/Button/Button";
 
 import ShowTransferInfo from "./components/ShowTransferInfo";
 import useAmountDetailsHook from "./useAmountDetailsHook";
+import { separateWithComma } from "utils/helpers";
 
+// The AmountDetails component, where most of the conversion logic is used
 export default function AmountDetails() {
   const {
     handleSubmitAmountDetails,
     onChangeAmount,
     handleChange,
     senderAmount,
-    receiverAmount,
+    recipientAmount,
     senderCurrency,
-    receiverCurrency,
+    recipientCurrency,
     allRates,
   } = useAmountDetailsHook();
 
@@ -25,7 +26,7 @@ export default function AmountDetails() {
 
       <InputSelect
         inputProps={{
-          value: senderAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+          value: separateWithComma(senderAmount), // Add commas to separate thousands
           name: "senderAmount",
           onChange: onChangeAmount,
           label: "You send",
@@ -37,23 +38,24 @@ export default function AmountDetails() {
           value: senderCurrency,
           options: Object.keys(allRates),
         }}
-        country={senderCurrency.toLowerCase().slice(0, -1)}
+        countryCode={senderCurrency.toLowerCase().slice(0, -1)} // remove last letter from the currency name to get the country code
       />
       <ShowTransferInfo />
       <div className={`mt-${senderAmount ? "0" : "4"}`}>
         <InputSelect
           inputProps={{
-            name: "receiverAmount",
-            value: receiverAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-            label: "Recipient gets",
+            value: separateWithComma(recipientAmount), // Add commas to separate thousands
+            name: "recipientAmount",
             onChange: onChangeAmount,
+            label: "Recipient gets",
             required: true,
           }}
           selectProps={{
-            options: [receiverCurrency],
-            disabled: true,
+            options: Object.keys(allRates),
+            value: recipientCurrency,
+            disabled: true, // I disabled the select because fixer only allows one base recipient currency
           }}
-          country={receiverCurrency.toLowerCase().slice(0, -1)}
+          countryCode={recipientCurrency.toLowerCase().slice(0, -1)}
         />
       </div>
       <div className="flex flex-col md:flex-row mt-6">
@@ -61,7 +63,7 @@ export default function AmountDetails() {
           Compare Rates
         </Button>
         <Button
-          disabled={!receiverAmount}
+          disabled={Number(recipientAmount) <= 0} // Recipient amount must be more than 0
           type="submit"
           className="mt-4 md:ml-5 md:mt-0 text-white bg-current-blue disabled:bg-purple-400 disabled:border-purple-400 border-current-blue"
         >

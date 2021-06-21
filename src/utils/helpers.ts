@@ -9,45 +9,45 @@ export const getNavColor = (paymentStage: number, index: number) => {
 };
 
 export const separateWithComma = (number: string | number) => {
-  return number ? number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0;
+  return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 };
 
 export const getConversionAmount = (senderAmount: string, fee: number) => {
-  const conversionAmount = Number(senderAmount) - Number(fee);
+  const conversionAmount = Number(senderAmount.replace(/,/g, "")) - Number(fee);
 
   return conversionAmount > 0
     ? conversionAmount.toLocaleString("en-US", { maximumFractionDigits: 2 })
     : 0;
-};
+}; // Calculate conversion amount based on the senderAmount and fee
 
-export const getUpdatedReceiverAmount = (
+export const getUpdatedRecipientAmount = (
   senderAmount: string,
   fee: number,
   rate: number
 ) => {
   if (senderAmount && fee && rate) {
-    const receiverAmount = (Number(senderAmount) - Number(fee)) * Number(rate);
+    const recipientAmount = (Number(senderAmount) - Number(fee)) / Number(rate);
 
-    return receiverAmount > 0
-      ? receiverAmount.toLocaleString("en-US", { maximumFractionDigits: 2 })
+    return recipientAmount > 0
+      ? recipientAmount.toLocaleString("en-US", { maximumFractionDigits: 2 }) // Round amount to 2 d.p and inser commas
       : "0";
   } else {
     return "";
   }
-};
+}; // Calculate recipient amount from the sender amount, fee and rate
 
 export const getUpdatedSenderAmount = (
-  receiverAmount: string,
+  recipientAmount: string,
   fee: number,
   rate: number
 ) => {
-  if (receiverAmount && fee && rate) {
-    const senderAmount = (Number(receiverAmount) + Number(fee)) / Number(rate);
+  if (recipientAmount && fee && rate) {
+    const senderAmount = Number(recipientAmount) * Number(rate) + Number(fee);
 
     return senderAmount > 0
-      ? senderAmount.toLocaleString("en-US", { maximumFractionDigits: 2 })
+      ? senderAmount.toLocaleString("en-US", { maximumFractionDigits: 2 }) // Round amount to 2 d.p and inser commas
       : "0";
   } else {
     return "";
   }
-};
+}; // Calculate sender amount from the sender amount, fee and rate

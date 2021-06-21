@@ -8,8 +8,7 @@ const PaymentContext = createContext<IPaymentContextProps>({
   handleChange: () => {},
   setPaymentStage: () => {},
   paymentStage: PaymentStages.AMOUNT,
-  resetPaymentDetails: () => {},
-});
+}); // Here, we are initializing our context states
 
 export const PaymentProvider = PaymentContext.Provider;
 export const PaymentConsumer = PaymentContext.Consumer;

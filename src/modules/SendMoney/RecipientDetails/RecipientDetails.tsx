@@ -7,11 +7,12 @@ import { usePaymentContext } from "utils/context";
 
 import ToggleInsideEurope from "./components/ToggleInsideEurope";
 
+// This component allows the inputing of the recipent details
 export default function RecipientDetails() {
   const {
     paymentDetails: {
-      receiverName,
-      receiverEmail,
+      recipientName,
+      recipientEmail,
       iban,
       swiftCode,
       insideEurope,
@@ -22,7 +23,7 @@ export default function RecipientDetails() {
 
   const handleSubmitRecipientDetails = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setPaymentStage(PaymentStages.REVIEW);
+    setPaymentStage(PaymentStages.REVIEW); // Proceed to next stage
   };
 
   return (
@@ -35,18 +36,18 @@ export default function RecipientDetails() {
       <div className="mt-5">
         <div>
           <Input
-            value={receiverEmail}
+            value={recipientEmail}
             onChange={handleChange}
-            name="receiverEmail"
+            name="recipientEmail"
             type="email"
             label="Their email (optional)"
           />
         </div>
         <div className="mt-4">
           <Input
-            value={receiverName}
+            value={recipientName}
             onChange={handleChange}
-            name="receiverName"
+            name="recipientName"
             required
             label="Full name of the account holder"
           />

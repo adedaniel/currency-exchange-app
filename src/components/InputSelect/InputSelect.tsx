@@ -12,11 +12,11 @@ interface ISelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 interface IInputSelectProps {
   inputProps: IInputProps;
   selectProps: ISelectProps;
-  country?: string;
+  countryCode?: string;
 }
 
 const InputSelect: FC<IInputSelectProps> = (props) => {
-  const { inputProps, selectProps, country } = props;
+  const { inputProps, selectProps, countryCode } = props;
 
   const { label, ...inputRest } = inputProps;
   const { options, ...selectRest } = selectProps;
@@ -32,19 +32,23 @@ const InputSelect: FC<IInputSelectProps> = (props) => {
       </div>
       <div className="flex h-16 w-32 bg-gray-100 rounded-r-md items-center justify-center px-6">
         <img
-          src={`https://flagcdn.com/32x24/${country}.png`}
-          alt={`${country} flag`}
+          src={`https://flagcdn.com/32x24/${countryCode}.png`} // Display the country flag from the country code
+          alt={`${countryCode} flag`}
           className="w-5 h-5 rounded-full object-cover md:mr-2"
         />
         <select
           className="bg-gray-100 text-purple-900 text-sm w-16 font-bold"
           {...selectRest}
         >
-          {options.map((option: any) => (
-            <option value={option} key={option}>
-              {option}
-            </option>
-          ))}
+          {options.map(
+            (
+              option: any // map from the array of options
+            ) => (
+              <option value={option} key={option}>
+                {option}
+              </option>
+            )
+          )}
         </select>
       </div>
     </div>

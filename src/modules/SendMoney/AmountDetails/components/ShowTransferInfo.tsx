@@ -1,16 +1,10 @@
-/* eslint-disable no-useless-escape */
 import React from "react";
 import useAmountDetailsHook from "../useAmountDetailsHook";
 
+// This one doesn't do much, just displays the already calculated values
 export default function ShowTransferInfo() {
-  const {
-    conversionAmount,
-    senderAmount,
-    senderCurrency,
-    receiverCurrency,
-    rate,
-    fee,
-  } = useAmountDetailsHook();
+  const { conversionAmount, senderAmount, senderCurrency, rate, fee } =
+    useAmountDetailsHook();
 
   return (
     <div
@@ -42,7 +36,7 @@ export default function ShowTransferInfo() {
         </div>
         <div className="flex mb-3">
           <p className="font-medium break-all w-28">
-            {conversionAmount} {receiverCurrency}
+            {conversionAmount} {senderCurrency}
           </p>
           <p className="font-medium">Amount we’ll convert</p>
         </div>

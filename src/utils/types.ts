@@ -2,14 +2,14 @@ import { SetStateAction } from "react";
 
 export interface IPaymentDetailsProps {
   senderAmount: string;
-  receiverAmount: string;
+  recipientAmount: string;
   senderCurrency: string;
-  receiverCurrency: string;
+  recipientCurrency: string;
   insideEurope: boolean;
   fee: number;
   rate: number;
-  receiverName: string;
-  receiverEmail: string;
+  recipientName: string;
+  recipientEmail: string;
   iban: string;
   swiftCode: string;
 }
@@ -27,5 +27,4 @@ export interface IPaymentContextProps {
   paymentStage: PaymentStages;
   setPaymentStage: (value: SetStateAction<PaymentStages>) => void;
   handleChange: (event: any) => void;
-  resetPaymentDetails: () => void;
 }

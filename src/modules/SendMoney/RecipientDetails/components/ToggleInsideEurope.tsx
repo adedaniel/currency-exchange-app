@@ -2,6 +2,7 @@ import React from "react";
 import Button from "components/Button/Button";
 import { usePaymentContext } from "utils/context";
 
+// So you can toggle between in/out of europe
 export default function ToggleInsideEurope() {
   const { paymentDetails, setPaymentDetails } = usePaymentContext();
 

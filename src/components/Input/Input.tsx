@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  className?: string;
+  className?: string; // to allow addition of other style classes
   label?: string;
 }
 
