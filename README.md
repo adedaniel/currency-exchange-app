@@ -12,7 +12,7 @@ yarn
 yarn start
 ```
 
-- You can also view the deployed site on Netlify at [fliqpay-exchange.netlify.app](https://fliqpay-exchange.netlify.app)
+- You can also view the deployed site on Netlify at [https://currency-exchange-flow.netlify.app](https://currency-exchange-flow.netlify.app)
 
 - To understand better my thought processes while writing the code, I wrote step-by-step comments on how the code is structured. You can start the tour by looking at the [`src/App.tsx`](https://github.com/adedaniel/fliqpay-exhange-app/blob/master/src/App.tsx) file.
 
