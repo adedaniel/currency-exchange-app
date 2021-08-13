@@ -16,9 +16,7 @@ yarn start
 
 - To understand better my thought processes while writing the code, I wrote step-by-step comments on how the code is structured. You can start the tour by looking at the [`src/App.tsx`](https://github.com/adedaniel/fliqpay-exhange-app/blob/master/src/App.tsx) file.
 
-#### Assumptions I made
-
-- I used Nunito sans font because the Sailec font was a paid font
+#### Notes
 
 - I used EUR as a fixed recipient currency beacuse the fixer api only converts to EUR as base currency for the free mode
 
