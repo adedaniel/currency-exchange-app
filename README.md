@@ -1,8 +1,6 @@
-# Fliqpay Frontend Engineer Assessment Project
+# Currency exchange app
 
-### by Adetola Daniel
-
-This project uses React, Context API, Typescript and Tailwind CSS, with Yarn as package manager
+This app uses React, Context API, Typescript and Tailwind CSS, with Yarn as package manager
 
 ## Installation
 
