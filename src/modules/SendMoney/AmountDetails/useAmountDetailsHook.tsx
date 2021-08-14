@@ -32,10 +32,10 @@ const useAmountDetailsHook = () => {
   const [allRates, setAllRates] = useState<IAllRateProps>({});
 
   const fetchRates = () => {
-    Axios.get(`${BASE_API_URL}?access_key=8d15f3f6f2e87ee9db02b556c48b0fb4`)
+    Axios.get(`${BASE_API_URL}/${recipientCurrency}`)
       .then(({ data }) => {
-        if (data.rates) {
-          setAllRates(data.rates);
+        if (data.conversion_rates) {
+          setAllRates(data.conversion_rates);
         } else {
           // If there was an error,
           setAllRates(staticRates); // Populate the rates with static rates in rates.json
@@ -50,7 +50,7 @@ const useAmountDetailsHook = () => {
 
   useEffect(() => {
     fetchRates();
-  }, []);
+  }, [recipientCurrency]);
 
   useEffect(() => {
     const updatedRecipientAmount = getUpdatedRecipientAmount(

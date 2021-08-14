@@ -51,9 +51,10 @@ export default function AmountDetails() {
             required: true,
           }}
           selectProps={{
+            onChange: handleChange,
+            name: "recipientCurrency",
             options: Object.keys(allRates),
             value: recipientCurrency,
-            disabled: true, // I disabled the select because fixer only allows one base recipient currency
           }}
           countryCode={recipientCurrency.toLowerCase().slice(0, -1)}
         />

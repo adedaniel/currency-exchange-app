@@ -2,7 +2,8 @@ import { IPaymentDetailsProps } from "./types";
 
 export const allPaymentStages = ["Amount", "Recipient", "Review", "Pay"];
 
-export const BASE_API_URL = "http://data.fixer.io/api/latest";
+export const BASE_API_URL =
+  "https://v6.exchangerate-api.com/v6/7df3dc092ddf0f737355b2bb/latest";
 
 export const initialPaymentDetails: IPaymentDetailsProps = {
   senderAmount: "",

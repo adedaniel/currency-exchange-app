@@ -42,7 +42,7 @@ export default function ShowTransferInfo() {
         </div>
         <div className="flex font-semibold text-purple-900">
           <p className="w-28">{rate}</p>
-          <p>Guaranteed rate (1hr)</p>
+          <p>Guaranteed rate (Today)</p>
         </div>
       </div>
     </div>
