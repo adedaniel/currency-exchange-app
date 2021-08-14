@@ -60,9 +60,9 @@ export default function AmountDetails() {
         />
       </div>
       <div className="flex flex-col md:flex-row mt-6">
-        <Button className="text-current-blue border-current-blue font-bold">
+        {/* <Button className="text-current-blue border-current-blue font-bold">
           Compare Rates
-        </Button>
+        </Button> */}
         <Button
           disabled={Number(recipientAmount) <= 0} // Recipient amount must be more than 0
           type="submit"
