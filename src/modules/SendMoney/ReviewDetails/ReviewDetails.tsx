@@ -3,6 +3,7 @@ import Button from "components/Button/Button";
 import Divider from "components/Divider/Divider";
 import { usePaymentContext } from "utils/context";
 import { getConversionAmount, separateWithComma } from "utils/helpers";
+import { PaymentStages } from "utils/types";
 
 // Final component to review all details that have been  inputed and calculated
 export default function ReviewDetails() {
@@ -20,9 +21,14 @@ export default function ReviewDetails() {
       iban,
       swiftCode,
     },
+    setPaymentStage,
   } = usePaymentContext();
 
   const conversionAmount = getConversionAmount(senderAmount, fee);
+
+  const handleConfirmPayment = () => {
+    setPaymentStage(PaymentStages.PAY); // Proceed to next stage
+  };
 
   return (
     <div className="">
@@ -98,7 +104,10 @@ export default function ReviewDetails() {
       </div>
 
       <div className="flex flex-col md:flex-row mt-8">
-        <Button className="text-white bg-current-green border-current-green">
+        <Button
+          onClick={handleConfirmPayment}
+          className="text-white bg-current-green border-current-green"
+        >
           Confirm and continue
         </Button>
       </div>

@@ -8,6 +8,7 @@ import { usePaymentContext } from "utils/context";
 import AmountDetails from "./AmountDetails/AmountDetails";
 import RecipientDetails from "./RecipientDetails/RecipientDetails";
 import ReviewDetails from "./ReviewDetails/ReviewDetails";
+import ShowConfirmation from "./ShowConfirmation/ShowConfirmation";
 import ErrorPage from "components/ErrorPage/ErrorPage";
 
 function SendMoney() {
@@ -22,6 +23,7 @@ function SendMoney() {
           {paymentStage === PaymentStages.AMOUNT && <AmountDetails />}
           {paymentStage === PaymentStages.RECIPIENT && <RecipientDetails />}
           {paymentStage === PaymentStages.REVIEW && <ReviewDetails />}
+          {paymentStage === PaymentStages.PAY && <ShowConfirmation />}
         </div>
       </div>
     </div>
